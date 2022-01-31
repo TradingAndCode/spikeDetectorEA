@@ -75,20 +75,15 @@ void MonitorRevenge()
     int j = 0;
     while (PositionsTotal() > 0 && j < PositionsTotal())
     {
-      Print("positions total ", PositionsTotal());
-      Print("preparing to close ", PositionGetTicket(j), "index ", j);
       if (PositionGetTicket(j) <= 0)
       {
-        Print("ticket invalid index : ", j, " ticket ", PositionGetTicket(0));
         continue;
       }
 
       if (PositionGetInteger(POSITION_MAGIC) != MagicNumber || PositionGetString(POSITION_SYMBOL) != Symbol())
       {
-        Print("magic or symbol nor matched");
         continue;
       }
-      Print("closing ticket ", PositionGetTicket(j));
       if (CloseOrder(j))
       {
         j = 0;
